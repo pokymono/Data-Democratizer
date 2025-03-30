@@ -15,6 +15,19 @@
   animation: progress 2s ease-in-out forwards;
 }
 
+/* Gradient animations */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 /* Add custom styles for the dashboard */
 .card-grid {
   display: grid;
@@ -22,10 +35,63 @@
   gap: 1rem;
 }
 
+/* Add global styles for gradients and backgrounds */
+body {
+  background: linear-gradient(to right, #f3f4f6, #e5e7eb);
+}
+
+.dark body {
+  background: linear-gradient(to right, #111827, #1f2937);
+}
+
+/* Improved card styles */
+.gradient-card {
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.dark .gradient-card {
+  background: linear-gradient(135deg, rgba(17, 24, 39, 0.7) 0%, rgba(17, 24, 39, 0.5) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Gradient buttons */
+.gradient-button {
+  background: linear-gradient(to right, #8b5cf6, #6366f1);
+  transition: all 0.3s ease;
+}
+
+.gradient-button:hover {
+  background: linear-gradient(to right, #7c3aed, #4f46e5);
+  transform: translateY(-2px);
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .card-grid {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   }
+  
+  .responsive-padding {
+    padding: 1rem !important;
+  }
+  
+  .responsive-text {
+    font-size: 90%;
+  }
+}
+
+/* Animation for elements entering viewport */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 

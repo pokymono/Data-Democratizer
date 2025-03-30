@@ -128,11 +128,11 @@ export default function QueryInput() {
             value={input}
             onChange={(e) => dispatch(setQuery(e.target.value))}
             placeholder="Example: Show me revenue trends by quarter..."
-            className="h-12 w-full pl-4 pr-20 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+            className="h-12 w-full pl-4 pr-20 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:bg-gray-800 dark:border-gray-700 dark:text-white transition-all duration-300"
           />
           <button
             type="button"
-            className="absolute right-12 top-0 h-12 w-10 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 flex items-center justify-center"
+            className="absolute right-12 top-0 h-12 w-10 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 flex items-center justify-center transition-colors duration-300"
             onClick={() => setSuggestionsOpen(!suggestionsOpen)}
           >
             <Sparkles className="h-4 w-4" />
@@ -141,13 +141,13 @@ export default function QueryInput() {
           {suggestionsOpen && (
             <div
               ref={suggestionsRef}
-              className="absolute z-10 mt-1 w-full bg-white rounded-md shadow-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700"
+              className="absolute z-10 mt-1 w-full bg-white rounded-md shadow-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700 transition-all duration-300"
             >
               <div className="p-2">
                 <input
                   type="text"
                   placeholder="Search for queries..."
-                  className="w-full p-2 border border-gray-200 rounded-md text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                  className="w-full p-2 border border-gray-200 rounded-md text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white transition-all duration-300"
                 />
               </div>
               <div className="max-h-60 overflow-auto">
@@ -156,7 +156,7 @@ export default function QueryInput() {
                   {suggestions.map((suggestion, index) => (
                     <li
                       key={index}
-                      className="px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm dark:hover:bg-gray-700 dark:text-gray-300"
+                      className="px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm dark:hover:bg-gray-700 dark:text-gray-300 transition-colors duration-200"
                       onClick={() => handleSuggestionClick(suggestion)}
                     >
                       {suggestion}
@@ -170,7 +170,11 @@ export default function QueryInput() {
 
         <button
           type="submit"
-          className={`absolute right-2 top-1 h-10 w-10 bg-purple-600 text-white rounded-xl flex items-center justify-center ${!input.trim() ? "opacity-50 cursor-not-allowed" : "hover:bg-purple-700"}`}
+          className={`absolute right-2 top-1 h-10 w-10 text-white rounded-xl flex items-center justify-center transition-all duration-300 transform hover:scale-105 shadow-md ${
+            !input.trim() 
+              ? "opacity-50 cursor-not-allowed bg-gradient-to-r from-purple-400 to-purple-600" 
+              : "bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700"
+          }`}
           disabled={!input.trim()}
         >
           <Send className="h-4 w-4" />
