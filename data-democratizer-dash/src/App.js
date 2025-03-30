@@ -6,10 +6,10 @@ import ResultDisplay from "./components/ResultDisplay"
 import LoadingIndicator from "./components/LoadingIndicator"
 import Sidebar from "./components/Sidebar"
 import { useSelector } from "react-redux"
+import { SidebarProvider, useSidebar } from "./context/SidebarContext";
+import Layout from "./components/Layout";
 
 function App() {
-  const result = useSelector((state) => state.query.result)
-  const loading = useSelector((state) => state.query.loading)
   const theme = useSelector((state) => state.theme.theme)
   
   useEffect(() => {
@@ -22,12 +22,24 @@ function App() {
   }, [theme])
 
   return (
+    <SidebarProvider>
+      <AppContent />
+    </SidebarProvider>
+  )
+}
+
+function AppContent() {
+  const { isCollapsed } = useSidebar();
+  const result = useSelector((state) => state.query.result)
+  const loading = useSelector((state) => state.query.loading)
+  
+  return (
     <div className="flex h-screen bg-gray-100 dark:bg-gray-800">
       {/* Sidebar */}
       <Sidebar />
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className={`flex-1 flex flex-col overflow-hidden transition-all duration-300 ${isCollapsed ? 'ml-0' : 'ml-0'}`}>
         {/* Header */}
         <header className="bg-white shadow dark:bg-gray-900 dark:border-b dark:border-gray-700">
           <div className="px-4 py-4 sm:px-6">
@@ -68,7 +80,7 @@ function App() {
         </main>
       </div>
     </div>
-  )
+  );
 }
 
 export default App

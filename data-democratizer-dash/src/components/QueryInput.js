@@ -170,7 +170,7 @@ export default function QueryInput() {
 
         <button
           type="submit"
-          className={`absolute right-2 top-0 h-12 w-12 bg-purple-600 text-white rounded-md flex items-center justify-center ${!input.trim() ? "opacity-50 cursor-not-allowed" : "hover:bg-purple-700"}`}
+          className={`absolute right-2 top-1 h-10 w-10 bg-purple-600 text-white rounded-xl flex items-center justify-center ${!input.trim() ? "opacity-50 cursor-not-allowed" : "hover:bg-purple-700"}`}
           disabled={!input.trim()}
         >
           <Send className="h-4 w-4" />
